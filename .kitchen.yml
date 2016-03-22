@@ -4,13 +4,24 @@ driver:
 
 provisioner:
   name: chef_zero
+  attributes:
+    java:
+      jdk_version: '7'
 
 platforms:
-  - name: ubuntu-12.04
-  - name: centos-6.5
+  - name: ubuntu-14.04
+    run_list:
+    - recipe[apt]
+    - recipe[curl]
+  - name: centos-6.7
+    run_list:
+    - recipe[yum]
+    - recipe[curl]
+    - recipe[elasticsearch_test::fix_nss] # see recipe header
 
 suites:
   - name: default
     run_list:
+      - recipe[java]
       - recipe[elasticsearch-chef-blog-demo::default]
     attributes:

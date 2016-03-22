@@ -7,3 +7,7 @@ long_description 'Installs/Configures elasticsearch-chef-blog-demo'
 version          '0.1.0'
 
 depends 'elasticsearch', '>= 2.0.0'
+depends 'apt'
+depends 'yum'
+depends 'curl'
+depends 'java'
